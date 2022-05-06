@@ -53,15 +53,25 @@
             border-radius: 8px;
         }
         
-        li {
+        .li1 {
+            display: flex;
+            height: 2rem;
+            overflow: hidden;
+            margin: 4px;
+            padding: 4px;
+            background-color: #f6f6f6;
+            cursor: pointer;
+        }
+        
+        .li2 {
             display: flex;
             margin: 4px;
             padding: 4px;
             background-color: #f6f6f6;
+            cursor: pointer;
         }
         
         li p {
-            height: 100%;
             width: calc(100% - 24px);
             margin: 0px;
         }
@@ -115,7 +125,7 @@
                     alert("put some text")
                 } else {
                     let newTask = document.createElement("li")
-                    newTask.className = "task";
+                    newTask.classList.add("li1");
                     newTask.innerHTML = `<p>${x.value} </p>` + "<button class='delete'>X</button>"
                     console.log(newTask)
                     myTasks.appendChild(newTask)
@@ -124,6 +134,14 @@
 
                     newTask.children[1].addEventListener("click", function() {
                         this.parentElement.remove();
+                    });
+
+                    newTask.children[0].addEventListener("click", function() {
+                        if (newTask.classList[0] == "li1") {
+                            newTask.classList.replace("li1", "li2");
+                        } else {
+                            newTask.classList.replace("li2", "li1")
+                        }
                     });
                 }
             });
